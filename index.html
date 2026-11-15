@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaveroSS - Futebol</title>
+    <!-- Ícone da aba do navegador -->
+    <link rel="icon" type="image/webp" href="uefa-champions-league.webp">
+    <!-- Arquivo de estilos visuais do site -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho fixo com o menu de navegação e botão de tema -->
+    <header>
+        <a class="logo" href="index.html">⚽ Favero<span>SS</span></a>
+
+        <nav>
+            <a href="index.html" class="ativo">Início</a>
+            <a href="jogadores.html">Jogadores</a>
+            <a href="bola%20de%20ouro.html">Bola de Ouro</a>
+            <a href="historico.html">Gols Históricos</a>
+            <a href="rank.html">Rankings</a>
+        </nav>
+
+        <div class="topo-botoes">
+            <button id="tema" type="button">☀️ Claro</button>
+            <span id="data"></span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Banner de boas-vindas principal -->
+        <section class="banner" id="inicio">
+            <div class="banner-conteudo">
+                <span class="etiqueta">FUTEBOL É AQUI</span>
+                <h1>O melhor do futebol mundial</h1>
+                <p>Jogos, gols, estatísticas e grandes histórias em um só lugar.</p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a class="botao" href="#jogos">Ver jogos de hoje</a>
+                    <a class="botao" href="bola%20de%20ouro.html" style="background: rgba(255,255,255,0.2); border: 1px solid white;">Ver Bola de Ouro</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barra de busca rápida no site -->
+        <section class="secao secao-pesquisa">
+            <div class="caixa-pesquisa-topo">
+                <h2>🔍 Pesquisar no site</h2>
+                <p class="descricao">Encontre rapidamente o que procura</p>
+                
+                <div class="input-grupo-pesquisa">
+                    <input type="text" id="pesquisa" placeholder="Procure por jogador, vídeo ou campeonato...">
+                    <button type="button" id="botao-pesquisar">Buscar</button>
+                </div>
+                <p id="resultado-pesquisa"></p>
+            </div>
+        </section>
+
+        <!-- Vídeo em destaque do Gol do Sidney -->
+        <section class="secao" id="gol-sidney">
+            <h2>Gol em Destaque</h2>
+            <p class="descricao">Acompanhe este lance especial.</p>
+            
+            <div class="card">
+                <video id="videoGol" controls preload="metadata">
+                    <source src="Gol Sidney.mp4" type="video/mp4">
+                    Seu navegador não conseguiu abrir esse vídeo.
+                </video>
+                <p id="mensagemVideo" class="aviso" style="margin-top: 10px;"></p>
+                <h3 style="margin-top: 15px;">Gol do Sidney</h3>
+                <p>Um lance inesquecível gravado para a história do site FaveroSS.</p>
+            </div>
+        </section>
+
+        <!-- Lista dinâmica com os jogos do dia -->
+        <section class="secao" id="jogos">
+            <h2>Jogos de hoje</h2>
+            <p class="descricao">Confira as principais partidas e atualizações em tempo real.</p>
+
+            <div id="lista-jogos">
+                <p>Carregando os jogos...</p>
+            </div>
+
+            <p id="aviso"></p>
+        </section>
+
+        <!-- Bloco interativo para anotar tarefas do torcedor -->
+        <section class="secao" id="tarefas">
+            <h2>Minha lista de tarefas</h2>
+            <p class="descricao">Anote o que você precisa fazer para não perder nenhum lance.</p>
+
+            <div class="linha">
+                <input type="text" id="nova-tarefa" placeholder="Digite uma tarefa (ex: Assistir final da Champions)...">
+                <button id="adicionar-tarefa" type="button">Adicionar</button>
+            </div>
+
+            <ul id="lista-tarefas"></ul>
+        </section>
+
+        <!-- Formulário simples de cadastro do usuário -->
+        <section class="secao" id="cadastro">
+            <h2>Faça seu cadastro</h2>
+            <p class="descricao">Cadastre-se para liberar o acesso ao Mural da Corneta e debater no site!</p>
+
+            <form id="form-cadastro" class="formulario-estilizado">
+                <div class="campo-form">
+                    <label for="nome">Nome ou Apelido de Torcedor</label>
+                    <input type="text" id="nome" placeholder="Ex: Torcedor Raiz" required>
+                </div>
+
+                <div class="campo-form">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
+
+                <div class="campo-form">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Crie uma senha (mín. 6 caracteres)" minlength="6" required>
+                </div>
+
+                <button type="submit" class="botao-principal">Cadastrar / Entrar</button>
+                <p id="mensagem-cadastro"></p>
+
+                <!-- Botão de Sair (Fica oculto e só aparece quando o usuário estiver logado) -->
+                <button type="button" id="botao-sair" style="display: none; background: #e11d48; margin-top: 15px; width: 100%;">Sair da conta</button>
+            </form>
+        </section>
+
+        <!-- Mural da Corneta (Bloqueado/Desbloqueado conforme o login) -->
+        <section class="secao" id="modo-ia">
+            <h2>🎙️ Mural da Corneta (Área da Torcida)</h2>
+            <p class="descricao">Debata, cornete lances e mande sua opinião sobre o futebol.</p>
+
+            <div class="chat">
+                <div id="conversa" style="max-height: 300px; overflow-y: auto; margin-bottom: 15px;">
+                    <div class="resposta">
+                        <p><b>FaveroSS Bot:</b> Bem-vindos ao mural oficial da corneta!</p>
+                    </div>
+                </div>
+
+                <!-- Aviso para quem não está cadastrado -->
+                <div id="aviso-bloqueio" style="background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; padding: 15px; border-radius: 9px; margin-bottom: 15px; text-align: center;">
+                    <p style="margin: 0; font-weight: 600; color: #d97706;">🔒 O Mural da Corneta está bloqueado. Faça o seu cadastro na seção acima para liberar o envio de mensagens!</p>
+                </div>
+
+                <!-- Caixa de envio (Fica oculta até o usuário se cadastrar) -->
+                <div class="linha" id="caixa-envio-corneta" style="display: none;">
+                    <input type="text" id="pergunta" placeholder="Digite sua corneta ou opinião sobre o futebol...">
+                    <button id="enviar-pergunta" type="button">Cornetar! 📢</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé padrão da página -->
+    <footer>
+        <div class="footer-conteudo">
+            <p class="logo">⚽ Favero<span>SS</span></p>
+            <p>Feito por quem é apaixonado por futebol.</p>
+            <p>© <span id="ano"></span> FaveroSS - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Arquivo de comportamento em JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

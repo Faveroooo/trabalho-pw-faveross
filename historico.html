@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gols Históricos - FaveroSS</title>
+    <!-- Ícone da aba do navegador -->
+    <link rel="icon" type="image/webp" href="uefa-champions-league.webp">
+    <!-- Arquivo de estilos visuais -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Cabeçalho fixo com o menu de navegação e botão de tema -->
+<header>
+    <a class="logo" href="index.html">⚽ Favero<span>SS</span></a>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="jogadores.html">Jogadores</a>
+        <a href="bola%20de%20ouro.html">Bola de Ouro</a>
+        <a href="historico.html" class="ativo">Gols Históricos</a>
+        <a href="rank.html">Rankings</a>
+    </nav>
+
+    <button id="tema" type="button">☀️ Claro</button>
+</header>
+
+<!-- Seção principal contendo os vídeos de lances inesquecíveis -->
+<main class="secao">
+    <h1>Gols que ficaram na história</h1>
+    <p class="descricao">Alguns lances marcantes e inesquecíveis que os fãs de futebol não esquecem.</p>
+
+    <div class="gols">
+        <!-- Vídeo e descrição do gol do Mbappé -->
+        <article class="card">
+            <video controls preload="metadata">
+                <source src="Mbappé.mp4" type="video/mp4">
+                Seu navegador não conseguiu abrir esse vídeo.
+            </video>
+
+            <div class="card-info">
+                <h2>Mbappé contra a Argentina</h2>
+                <p class="clube">Final da Copa do Mundo de 2022</p>
+                <p>
+                    Na final da Copa do Mundo de 2022, Mbappé marcou
+                    um voleio espetacular aos 81 minutos. Foi um dos gols mais
+                    marcantes daquela final, que terminou com a
+                    Argentina campeã nos pênaltis.
+                </p>
+            </div>
+        </article>
+
+        <!-- Vídeo e descrição da bicicleta do Cristiano Ronaldo -->
+        <article class="card">
+            <video controls preload="metadata">
+                <source src="CR7.mp4" type="video/mp4">
+                Seu navegador não conseguiu abrir esse vídeo.
+            </video>
+
+            <div class="card-info">
+                <h2>A bicicleta de Cristiano Ronaldo</h2>
+                <p class="clube">UEFA Champions League</p>
+                <p>
+                    Um dos gols mais lembrados da carreira de CR7.
+                    A bicicleta contra a Juventus, pela Champions
+                    League, impressionou até os torcedores rivais e foi aplaudida de pé.
+                </p>
+            </div>
+        </article>
+    </div>
+</main>
+
+<!-- Rodapé padrão da página -->
+<footer>
+    <p>FaveroSS - Futebol © 2026</p>
+</footer>
+
+<!-- Script de comportamento -->
+<script src="script.js"></script>
+</body>
+</html>

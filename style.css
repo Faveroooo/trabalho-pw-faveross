@@ -1,0 +1,434 @@
+/* Importação da fonte moderna Poppins do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* Cores padrão para o tema claro */
+:root {
+    --fundo: #f1f4f8;
+    --cartao: #ffffff;
+    --texto: #172033;
+    --destaque: #087f5b;
+    --destaque-hover: #066649;
+    --borda: #dce3eb;
+    --sombra: 0 5px 18px rgba(0, 0, 0, 0.07);
+}
+
+/* Cores aplicadas automaticamente quando o modo escuro está ativo */
+body.escuro {
+    --fundo: #10151d;
+    --cartao: #1b2430;
+    --texto: #f1f5f9;
+    --destaque: #4ade80;
+    --destaque-hover: #22c55e;
+    --borda: #354151;
+    --sombra: 0 5px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Padronização de tamanhos de caixa para todos os elementos */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Deixa a rolagem da página suave ao clicar em links internos */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilos gerais do corpo da página */
+body {
+    margin: 0;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Poppins', Arial, sans-serif;
+    transition: background 0.25s, color 0.25s;
+}
+
+/* Estilização do cabeçalho fixo no topo */
+header {
+    background: var(--cartao);
+    border-bottom: 1px solid var(--borda);
+    padding: 16px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logotipo do site com destaque na cor principal */
+.logo {
+    color: var(--destaque);
+    font-size: 24px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--texto);
+}
+
+/* Menu de navegação entre as páginas */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--texto);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+nav a:hover,
+nav a.ativo {
+    color: var(--destaque);
+}
+
+.topo-botoes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Padrão visual de botões e links de ação */
+button,
+.botao {
+    background: var(--destaque);
+    color: white;
+    border: 0;
+    border-radius: 9px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:hover,
+.botao:hover {
+    background: var(--destaque-hover);
+    transform: translateY(-1px);
+}
+
+/* Estrutura central do conteúdo do site */
+main {
+    width: 88%;
+    max-width: 1150px;
+    margin: 30px auto;
+}
+
+/* Caixas de seção que dividem o conteúdo */
+.secao {
+    background: var(--cartao);
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+    padding: 35px;
+    margin-bottom: 45px;
+    box-shadow: var(--sombra);
+    scroll-margin-top: 30px;
+}
+
+/* Visual do banner principal com imagem de fundo e degradê */
+.banner {
+    min-height: 390px;
+    padding: 55px 35px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-bottom: 45px;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 20, 15, 0.88),
+            rgba(0, 20, 15, 0.55)
+        ),
+        url("Captura de tela 2026-10-19 114739.png")
+        center / cover no-repeat;
+    box-shadow: var(--sombra);
+}
+
+.banner-conteudo {
+    max-width: 650px;
+}
+
+.etiqueta {
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.banner h1 {
+    font-size: clamp(32px, 5vw, 50px);
+    line-height: 1.15;
+    margin: 15px 0;
+}
+
+.banner p {
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: clamp(28px, 4vw, 38px);
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 26px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 1.7;
+}
+
+.descricao {
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
+
+/* Estilização padrão para os cards de conteúdo */
+.card {
+    background: var(--cartao);
+    border: 1px solid var(--borda);
+    border-radius: 13px;
+    padding: 20px;
+    box-shadow: var(--sombra);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.jogos, .gols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.foto-card {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Layout específico do destaque da Bola de Ouro */
+.premio-destaque {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+
+.premio-imagem {
+    flex: 1;
+    min-width: 280px;
+    position: relative;
+}
+
+.premio-imagem img {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: var(--sombra);
+}
+
+.etiqueta-vencedor {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #f59e0b;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.premio-info {
+    flex: 1.5;
+    min-width: 280px;
+}
+
+.clube-premio {
+    color: var(--destaque);
+    font-weight: 600;
+    margin-top: -5px;
+    margin-bottom: 15px;
+}
+
+.estatisticas-bola-ouro {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stat-card {
+    background: var(--fundo);
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--borda);
+}
+
+.stat-numero {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--destaque);
+}
+
+.stat-legenda {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* Campos de digitação e formulários */
+.linha, .input-grupo-pesquisa {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    flex: 1;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--borda);
+    background: var(--fundo);
+    color: var(--texto);
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--destaque);
+}
+
+form label {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 6px;
+    margin-top: 15px;
+}
+
+ul#lista-tarefas {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+ul#lista-tarefas li {
+    background: var(--fundo);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilo para vídeos e caixa de chat */
+video {
+    display: block;
+    width: 100%;
+    background: #000;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.chat {
+    background: var(--fundo);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+#conversa {
+    min-height: 80px;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding-right: 5px;
+}
+
+.resposta {
+    background: var(--card-bg);
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+    margin-bottom: 8px;
+}
+
+/* Rodapé do site */
+footer {
+    padding: 25px;
+    text-align: center;
+    background: var(--cartao);
+    border-top: 1px solid var(--borda);
+    font-size: 13px;
+}
+
+/* Ajustes de responsividade para celulares */
+@media (max-width: 650px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .topo-botoes {
+        justify-content: center;
+    }
+
+    main {
+        width: 92%;
+    }
+
+    .banner {
+        min-height: 320px;
+        padding: 35px 20px;
+    }
+    
+    .estatisticas-bola-ouro {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Afasta o botão de cadastro para baixo conforme pedido */
+#form-cadastro button[type="submit"],
+#form-cadastro .botao-principal {
+    margin-top: 25px;
+    width: 100%;
+}
