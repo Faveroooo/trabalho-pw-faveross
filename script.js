@@ -44,7 +44,7 @@ const mensagemVideo = document.getElementById("mensagemVideo");
 
 if (videoGol && mensagemVideo) {
     videoGol.addEventListener("error", function () {
-        mensagemVideo.textContent = "Não foi possível reproduzir o vídeo. Confira se o arquivo Gol Sidney.mp4 está na pasta do site.";
+        mensagemVideo.textContent = "Erro ao carregar o vídeo Gol Sidney.mp4.";
     });
 }
 
@@ -77,25 +77,18 @@ const listaTarefas = document.getElementById("lista-tarefas");
 
 if (botaoAdicionarTarefa && inputTarefa && listaTarefas) {
     botaoAdicionarTarefa.addEventListener("click", function () {
-        const textoTarefa = inputTarefa.value.trim();
-        if (textoTarefa !== "") {
+        const texto = inputTarefa.value.trim();
+        if (texto !== "") {
             const li = document.createElement("li");
-            li.innerHTML = `
-                <span>${textoTarefa}</span>
-                <button type="button" style="padding: 4px 8px; font-size: 12px; background: #e11d48;">Remover</button>
-            `;
-            
-            li.querySelector("button").addEventListener("click", function() {
-                li.remove();
-            });
-
+            li.innerHTML = `<span>${texto}</span><button type="button" style="padding: 4px 8px; font-size: 12px; background: #e11d48;">Remover</button>`;
+            li.querySelector("button").addEventListener("click", () => li.remove());
             listaTarefas.appendChild(li);
             inputTarefa.value = "";
         }
     });
 }
 
-// ELEMENTOS DE CONTROLE DO CADASTRO E BOTÃO SAIR
+// Controle do cadastro e login do torcedor
 const formCadastro = document.getElementById("form-cadastro");
 const mensagemCadastro = document.getElementById("mensagem-cadastro");
 const avisoBloqueio = document.getElementById("aviso-bloqueio");
@@ -104,26 +97,22 @@ const botaoSair = document.getElementById("botao-sair");
 
 let usuarioLogado = localStorage.getItem("torcedorFaveroSS");
 
-// Função para atualizar a tela (libera ou bloqueia o mural e exibe/oculta o botão Sair)
+// Função para atualizar a tela conforme o status de login
 function verificarStatusLogin() {
     usuarioLogado = localStorage.getItem("torcedorFaveroSS");
 
     if (usuarioLogado) {
-        // Se estiver logado: esconde aviso, mostra caixa da corneta e exibe o botão Sair
         if (avisoBloqueio) avisoBloqueio.style.display = "none";
         if (caixaEnvioCorneta) caixaEnvioCorneta.style.display = "flex";
         if (botaoSair) botaoSair.style.display = "block";
-        if (formCadastro.querySelector("button[type='submit']")) {
-            formCadastro.querySelector("button[type='submit']").style.display = "none";
-        }
+        const btnSub = formCadastro?.querySelector("button[type='submit']");
+        if (btnSub) btnSub.style.display = "none";
     } else {
-        // Se NÃO estiver logado: mostra aviso, esconde caixa da corneta, oculta botão Sair e mostra o cadastro
         if (avisoBloqueio) avisoBloqueio.style.display = "block";
         if (caixaEnvioCorneta) caixaEnvioCorneta.style.display = "none";
         if (botaoSair) botaoSair.style.display = "none";
-        if (formCadastro.querySelector("button[type='submit']")) {
-            formCadastro.querySelector("button[type='submit']").style.display = "block";
-        }
+        const btnSub = formCadastro?.querySelector("button[type='submit']");
+        if (btnSub) btnSub.style.display = "block";
     }
 }
 
@@ -133,52 +122,91 @@ verificarStatusLogin();
 if (formCadastro && mensagemCadastro) {
     if (usuarioLogado) {
         mensagemCadastro.style.color = "var(--destaque)";
-        mensagemCadastro.textContent = `E aí, ${usuarioLogado}! Você está conectado.`;
+        mensagemCadastro.textContent = `E aí, ${usuarioLogado}! Conectado.`;
     }
 
     formCadastro.addEventListener("submit", function (e) {
         e.preventDefault();
         const nome = document.getElementById("nome").value.trim();
-        
         if (nome) {
             localStorage.setItem("torcedorFaveroSS", nome);
             usuarioLogado = nome;
             mensagemCadastro.style.color = "var(--destaque)";
-            mensagemCadastro.textContent = `Boa, ${nome}! Cadastro feito com sucesso. Mural liberado!`;
-            
+            mensagemCadastro.textContent = `Boa, ${nome}! Cadastro feito.`;
             verificarStatusLogin();
             formCadastro.reset();
         }
     });
 }
 
-// AÇÃO DO BOTÃO SAIR (Remove o usuário salvo e bloqueia o site novamente)
+// Ação do botão sair da conta
 if (botaoSair) {
     botaoSair.addEventListener("click", function () {
         localStorage.removeItem("torcedorFaveroSS");
-        mensagemCadastro.textContent = "Você saiu da sua conta.";
+        mensagemCadastro.textContent = "Você saiu.";
         verificarStatusLogin();
     });
 }
 
-// MURAL DA CORNETA
+// Gerenciador do Mural da Corneta (Mensagem Normal)
 const inputCorneta = document.getElementById("pergunta");
 const botaoCornetar = document.getElementById("enviar-pergunta");
 const muralConversa = document.getElementById("conversa");
 
 if (botaoCornetar && inputCorneta && muralConversa) {
-    botaoCornetar.addEventListener("click", function () {
-        const torcedorAtual = localStorage.getItem("torcedorFaveroSS");
-        const textoCorneta = inputCorneta.value.trim();
+    botaoCornetar.addEventListener("click", function (e) {
+        e.preventDefault();
+        const torcedor = localStorage.getItem("torcedorFaveroSS");
+        const texto = inputCorneta.value.trim();
 
-        if (torcedorAtual && textoCorneta !== "") {
-            const pTorcedor = document.createElement("div");
-            pTorcedor.className = "resposta";
-            pTorcedor.innerHTML = `<p>🗣️ <b>${torcedorAtual} (Torcedor):</b> ${textoCorneta}</p>`;
-            muralConversa.appendChild(pTorcedor);
-
+        if (torcedor && texto !== "") {
+            const p = document.createElement("div");
+            p.className = "resposta";
+            p.innerHTML = `<p>🗣️ <b>${torcedor}:</b> ${texto}</p>`;
+            muralConversa.appendChild(p);
             inputCorneta.value = "";
             muralConversa.scrollTop = muralConversa.scrollHeight;
+        }
+    });
+}
+
+// Aviso de atualizações no Modo IA
+const botaoIA = document.getElementById("enviar-ia");
+
+if (botaoIA && inputCorneta && muralConversa) {
+    botaoIA.addEventListener("click", function (e) {
+        e.preventDefault();
+        const torcedor = localStorage.getItem("torcedorFaveroSS");
+        const texto = inputCorneta.value.trim();
+
+        if (torcedor && texto !== "") {
+            // Exibe a mensagem do torcedor no mural
+            const pUser = document.createElement("div");
+            pUser.className = "resposta";
+            pUser.innerHTML = `<p>🗣️ <b>${torcedor}:</b> ${texto}</p>`;
+            muralConversa.appendChild(pUser);
+
+            // Resposta informando as atualizações do modo IA e indicando as 5 seções
+            setTimeout(function () {
+                const pIA = document.createElement("div");
+                pIA.className = "resposta";
+                pIA.style.borderColor = "#2563eb";
+                pIA.innerHTML = `
+                    <p>🤖 <b>FaveroSS IA:</b> O Modo IA está passando por várias atualizações e novidades em breve! 🚀</p>
+                    <p style="margin-top: 6px; font-size: 13px; opacity: 0.9;">
+                        Enquanto isso, que tal conferir nossos 5 temas principais?<br>
+                        ⚽ <b>Início</b> (Jogos e lance do Sidney)<br>
+                        🏃 <b>Jogadores</b> (Fichas e destaques)<br>
+                        🏆 <b>Bola de Ouro</b> (Melhores do mundo)<br>
+                        🎬 <b>Gols Históricos</b> (Momentos marcantes)<br>
+                        📊 <b>Rankings</b> (Tabelas e classificações)
+                    </p>
+                `;
+                muralConversa.appendChild(pIA);
+                muralConversa.scrollTop = muralConversa.scrollHeight;
+            }, 400);
+
+            inputCorneta.value = "";
         }
     });
 }
