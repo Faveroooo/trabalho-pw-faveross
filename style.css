@@ -1,7 +1,7 @@
-/* Importação da fonte moderna Poppins do Google Fonts */
+/* Fonte poppins do google */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
-/* Cores padrão para o tema claro */
+/* Variaveis do tema claro */
 :root {
     --fundo: #f1f4f8;
     --cartao: #ffffff;
@@ -12,7 +12,7 @@
     --sombra: 0 5px 18px rgba(0, 0, 0, 0.07);
 }
 
-/* Cores aplicadas automaticamente quando o modo escuro está ativo */
+/* Variaveis do tema escuro */
 body.escuro {
     --fundo: #10151d;
     --cartao: #1b2430;
@@ -23,17 +23,15 @@ body.escuro {
     --sombra: 0 5px 18px rgba(0, 0, 0, 0.2);
 }
 
-/* Padronização de tamanhos de caixa para todos os elementos */
+/* Reset simples */
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
-/* Deixa a rolagem da página suave ao clicar em links internos */
 html {
     scroll-behavior: smooth;
 }
 
-/* Estilos gerais do corpo da página */
 body {
     margin: 0;
     background: var(--fundo);
@@ -42,7 +40,7 @@ body {
     transition: background 0.25s, color 0.25s;
 }
 
-/* Estilização do cabeçalho fixo no topo */
+/* Estilo do menu topo */
 header {
     background: var(--cartao);
     border-bottom: 1px solid var(--borda);
@@ -57,7 +55,6 @@ header {
     z-index: 1000;
 }
 
-/* Logotipo do site com destaque na cor principal */
 .logo {
     color: var(--destaque);
     font-size: 24px;
@@ -69,7 +66,6 @@ header {
     color: var(--texto);
 }
 
-/* Menu de navegação entre as páginas */
 nav {
     display: flex;
     align-items: center;
@@ -84,8 +80,7 @@ nav a {
     transition: color 0.2s;
 }
 
-nav a:hover,
-nav a.ativo {
+nav a:hover, nav a.ativo {
     color: var(--destaque);
 }
 
@@ -95,9 +90,8 @@ nav a.ativo {
     gap: 12px;
 }
 
-/* Padrão visual de botões e links de ação */
-button,
-.botao {
+/* Botoes gerais do site */
+button, .botao {
     background: var(--destaque);
     color: white;
     border: 0;
@@ -112,20 +106,18 @@ button,
     transition: background 0.2s, transform 0.1s;
 }
 
-button:hover,
-.botao:hover {
+button:hover, .botao:hover {
     background: var(--destaque-hover);
     transform: translateY(-1px);
 }
 
-/* Estrutura central do conteúdo do site */
+/* Conteudo principal */
 main {
     width: 88%;
     max-width: 1150px;
     margin: 30px auto;
 }
 
-/* Caixas de seção que dividem o conteúdo */
 .secao {
     background: var(--cartao);
     border: 1px solid var(--borda);
@@ -136,7 +128,7 @@ main {
     scroll-margin-top: 30px;
 }
 
-/* Visual do banner principal com imagem de fundo e degradê */
+/* Banner de entrada */
 .banner {
     min-height: 390px;
     padding: 55px 35px;
@@ -145,14 +137,7 @@ main {
     align-items: center;
     color: white;
     margin-bottom: 45px;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 20, 15, 0.88),
-            rgba(0, 20, 15, 0.55)
-        ),
-        url("Captura de tela 2026-10-19 114739.png")
-        center / cover no-repeat;
+    background: linear-gradient(90deg, rgba(0, 20, 15, 0.88), rgba(0, 20, 15, 0.55)), url("Captura de tela 2026-10-19 114739.png") center / cover no-repeat;
     box-shadow: var(--sombra);
 }
 
@@ -178,27 +163,12 @@ main {
     margin-bottom: 25px;
 }
 
-h1 {
-    font-size: clamp(28px, 4vw, 38px);
-    margin-top: 0;
-}
+h1 { font-size: clamp(28px, 4vw, 38px); margin-top: 0; }
+h2 { font-size: 26px; margin-top: 0; margin-bottom: 10px; }
+p { line-height: 1.7; }
+.descricao { opacity: 0.8; margin-bottom: 25px; }
 
-h2 {
-    font-size: 26px;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-p {
-    line-height: 1.7;
-}
-
-.descricao {
-    opacity: 0.8;
-    margin-bottom: 25px;
-}
-
-/* Estilização padrão para os cards de conteúdo */
+/* Cards de conteudo */
 .card {
     background: var(--cartao);
     border: 1px solid var(--borda);
@@ -208,9 +178,7 @@ p {
     transition: transform 0.2s;
 }
 
-.card:hover {
-    transform: translateY(-3px);
-}
+.card:hover { transform: translateY(-3px); }
 
 .jogos, .gols {
     display: grid;
@@ -228,7 +196,7 @@ p {
     margin-bottom: 15px;
 }
 
-/* Layout específico do destaque da Bola de Ouro */
+/* Card da Bola de Ouro */
 .premio-destaque {
     display: flex;
     flex-wrap: wrap;
@@ -261,10 +229,7 @@ p {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.premio-info {
-    flex: 1.5;
-    min-width: 280px;
-}
+.premio-info { flex: 1.5; min-width: 280px; }
 
 .clube-premio {
     color: var(--destaque);
@@ -295,21 +260,16 @@ p {
     color: var(--destaque);
 }
 
-.stat-legenda {
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
+.stat-legenda { font-size: 0.8rem; opacity: 0.8; }
 
-/* Campos de digitação e formulários */
+/* Formuarios e campos de texto */
 .linha, .input-grupo-pesquisa {
     display: flex;
     gap: 12px;
     margin-bottom: 15px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"] {
     flex: 1;
     width: 100%;
     padding: 12px 16px;
@@ -323,9 +283,7 @@ input[type="password"] {
     transition: border-color 0.2s;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
     border-color: var(--destaque);
 }
 
@@ -337,6 +295,7 @@ form label {
     margin-top: 15px;
 }
 
+/* Lista de tarefas */
 ul#lista-tarefas {
     list-style: none;
     padding: 0;
@@ -354,7 +313,6 @@ ul#lista-tarefas li {
     align-items: center;
 }
 
-/* Estilo para vídeos e caixa de chat */
 video {
     display: block;
     width: 100%;
@@ -363,6 +321,7 @@ video {
     margin-bottom: 15px;
 }
 
+/* Caixa do Mural da Corneta e IA */
 .chat {
     background: var(--fundo);
     border: 1px solid var(--borda);
@@ -379,14 +338,14 @@ video {
 }
 
 .resposta {
-    background: var(--card-bg);
+    background: var(--cartao);
     padding: 10px 14px;
     border-radius: 8px;
     border: 1px solid var(--borda);
     margin-bottom: 8px;
 }
 
-/* Rodapé do site */
+/* Rodape *a/
 footer {
     padding: 25px;
     text-align: center;
@@ -395,40 +354,18 @@ footer {
     font-size: 13px;
 }
 
-/* Ajustes de responsividade para celulares */
-@media (max-width: 650px) {
-    header {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
-    }
-
-    nav {
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .topo-botoes {
-        justify-content: center;
-    }
-
-    main {
-        width: 92%;
-    }
-
-    .banner {
-        min-height: 320px;
-        padding: 35px 20px;
-    }
-    
-    .estatisticas-bola-ouro {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Afasta o botão de cadastro para baixo conforme pedido */
 #form-cadastro button[type="submit"],
 #form-cadastro .botao-principal {
     margin-top: 25px;
     width: 100%;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 650px) {
+    header { flex-direction: column; align-items: stretch; text-align: center; }
+    nav { justify-content: center; gap: 15px; }
+    .topo-botoes { justify-content: center; }
+    main { width: 92%; }
+    .banner { min-height: 320px; padding: 35px 20px; }
+    .estatisticas-bola-ouro { grid-template-columns: 1fr; }
 }
